@@ -1,0 +1,13 @@
+#app{
+    font:14px;
+    min-width: 550px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    max-width: 850px;
+}
+
+a.active{
+    color:orange;
+}
+
+nav {
+    padding-top: 20px;
+}
