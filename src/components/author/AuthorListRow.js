@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router-dom';
 
 const AuthorListRow = ({author, deleteAuthor}) => {
     const deleteHandler = () => {

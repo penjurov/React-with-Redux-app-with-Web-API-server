@@ -5,25 +5,26 @@ import delay from './delay';
 // All calls return promises.
 const authors = [
   {
-    id: 'cory-house',
+    id: 1,
     firstName: 'Cory',
     lastName: 'House'
   },
   {
-    id: 'scott-allen',
+    id: 2,
     firstName: 'Scott',
     lastName: 'Allen'
   },
   {
-    id: 'dan-wahlin',
+    id: 3,
     firstName: 'Dan',
     lastName: 'Wahlin'
   }
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (author) => {
-  return author.firstName.toLowerCase() + '-' + author.lastName.toLowerCase();
+const generateId = () => {
+  let maxId = Math.max.apply(Math,authors.map(function(o){return o.y;}));
+  return maxId++;
 };
 
 class AuthorApi {

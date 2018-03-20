@@ -1,4 +1,6 @@
 import delay from './delay';
+import authorsApi from './mockAuthorApi';
+import categoryApi from './mockCategoryApi';
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
@@ -8,41 +10,41 @@ const courses = [
     id: "react-flux-building-applications",
     title: "Building Applications in React and Flux",
     watchHref: "http://www.pluralsight.com/courses/react-flux-building-applications",
-    authorId: "cory-house",
+    authorId: 1,
     length: "5:08",
-    category: "JavaScript"
+    categoryId: 1
   },
   {
     id: "clean-code",
     title: "Clean Code: Writing Code for Humans",
     watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
-    authorId: "cory-house",
+    authorId: 1,
     length: "3:10",
-    category: "Software Practices"
+    categoryId: 2
   },
   {
     id: "architecture",
     title: "Architecting Applications for the Real World",
     watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
-    authorId: "cory-house",
+    authorId: 1,
     length: "2:52",
-    category: "Software Architecture"
+    categoryId: 3
   },
   {
     id: "career-reboot-for-developer-mind",
     title: "Becoming an Outlier: Reprogramming the Developer Mind",
     watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
-    authorId: "cory-house",
+    authorId: 1,
     length: "2:30",
-    category: "Career"
+    categoryId: 4
   },
   {
     id: "web-components-shadow-dom",
     title: "Web Component Fundamentals",
     watchHref: "http://www.pluralsight.com/courses/web-components-shadow-dom",
-    authorId: "cory-house",
+    authorId: 1,
     length: "5:10",
-    category: "HTML5"
+    categoryId: 5
   }
 ];
 
@@ -59,7 +61,32 @@ class CourseApi {
   static getAllCourses() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], courses));
+
+        categoryApi.getAllCategories().then(categories => {
+          authorsApi.getAllAuthors().then(authors => {
+            let coursesWithAuthors = courses.map(function (course) {
+              let author = authors.filter(author => {
+                return author.id === course.authorId;
+              })[0];
+
+              if (author) {
+                Object.assign(course, { authorName: author.firstName + ' ' + author.lastName});
+              } 
+
+              let category = categories.filter(category => {
+                return category.id === course.categoryId;
+              })[0];
+
+              if (category) {
+                Object.assign(course, { categoryTitle: category.title});
+              } 
+
+              return course;
+            });
+    
+            resolve(Object.assign([], coursesWithAuthors));
+          });
+        });
       }, delay);
     });
   }

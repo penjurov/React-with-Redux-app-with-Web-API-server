@@ -26,15 +26,24 @@ const Header = ({loading}) => {
 
                 <NavDropdown eventKey={2} title="Courses" id="courses-dropdown">
                     <LinkContainer to="/course">
-                        <MenuItem eventKey={2.1}>Add Course</MenuItem>
+                        <MenuItem eventKey={2.1}>Add course</MenuItem>
                     </LinkContainer>
                     <LinkContainer to="/courses">
-                        <MenuItem eventKey={2.2}>View Courses</MenuItem>
+                        <MenuItem eventKey={2.2}>View courses</MenuItem>
+                    </LinkContainer>
+                </NavDropdown>
+
+                 <NavDropdown eventKey={3} title="Categories" id="categories-dropdown">
+                    <LinkContainer to="/category">
+                        <MenuItem eventKey={3.1}>Add category</MenuItem>
+                    </LinkContainer>
+                    <LinkContainer to="/categories">
+                        <MenuItem eventKey={3.2}>View categories</MenuItem>
                     </LinkContainer>
                 </NavDropdown>
 
                 <LinkContainer to="/about">
-                    <NavItem eventKey={3}>About</NavItem>
+                    <NavItem eventKey={4}>About</NavItem>
                 </LinkContainer>
             </Nav>
         </Navbar>
