@@ -7,6 +7,7 @@ import CourseForm from './CourseForm';
 function setup(saving){
     let props = {
         course: {}, 
+        title: 'Add course',
         saving: saving, 
         errors: {},
         onSave: () => {},
@@ -22,7 +23,7 @@ describe('CourseForm via Enzyme', () => {
     it('renders form and h1', () => {
         const wrapper = setup(false);
         expect(wrapper.find('form').length).toBe(1);
-        expect(wrapper.find('h1').text()).toEqual('Manage Course');
+        expect(wrapper.find('h1').text()).toEqual('Add course');
     });
 
     it('save button is labeled "Save" when not saving', () => {

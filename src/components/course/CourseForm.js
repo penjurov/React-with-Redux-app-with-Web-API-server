@@ -2,10 +2,10 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
+const CourseForm = ({course, title, allAuthors, onSave, onChange, saving, errors}) => {
     return(
         <form>
-            <h1>Manage Course</h1>
+            <h1>{title}</h1>
             <TextInput 
                 name="title"
                 label="Title"
@@ -44,6 +44,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
 
 CourseForm.propTypes = {
     course: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
     allAuthors: PropTypes.array.isRequired,
     onSave: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,

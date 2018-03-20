@@ -1,13 +1,13 @@
 #app{
     font:14px;
     min-width: 550px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    max-width: 850px;
+}
+
+.nav-main a, .nav-main a:hover {
+    text-decoration: none;
+    color: #777;
 }
 
 a.active{
     color:orange;
-}
-
-nav {
-    padding-top: 20px;
 }
