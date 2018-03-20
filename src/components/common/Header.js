@@ -12,9 +12,14 @@ const Header = ({loading}) => {
                 </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-                <NavDropdown eventKey={1} title="Courses" id="courses-dropdown">
-                    <MenuItem eventKey={1.1} href="/course">Add Course</MenuItem>
-                    <MenuItem eventKey={1.2} href="/courses">View Courses</MenuItem>
+            <NavDropdown eventKey={1} title="Authors" id="authors-dropdown">
+                    <MenuItem eventKey={1.1} href="/author">Add Author</MenuItem>
+                    <MenuItem eventKey={1.2} href="/authors">View Authors</MenuItem>
+                </NavDropdown>
+
+                <NavDropdown eventKey={2} title="Courses" id="courses-dropdown">
+                    <MenuItem eventKey={2.1} href="/course">Add Course</MenuItem>
+                    <MenuItem eventKey={2.2} href="/courses">View Courses</MenuItem>
                 </NavDropdown>
 
                 <NavItem eventKey={2} href="/about">About</NavItem>

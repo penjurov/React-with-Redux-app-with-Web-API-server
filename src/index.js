@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import {render} from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom';
 import routes from './routes';
 import {Provider} from 'react-redux';
 import {loadCourses} from './actions/courseActions';

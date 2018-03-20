@@ -11,3 +11,7 @@
 a.active{
     color:orange;
 }
+
+span.delete-action {
+    cursor: pointer;
+}
