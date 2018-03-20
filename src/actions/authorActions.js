@@ -8,12 +8,38 @@ export function loadAuthorsSuccess(authors){
     };
 }
 
+export function createAuthorSuccess(author){
+    return {
+        type: types.CREATE_AUTHOR_SUCCESS, author
+    };
+}
+
+export function updateAuthorSuccess(author){
+    return {
+        type: types.UPDATE_AUTHOR_SUCCESS, author
+    };
+}
+
+
 export function loadAuthors(){
     return function(dispatch){
         dispatch(beginAjaxCall());
         return authorsApi.getAllAuthors().then(authors => {
             dispatch(loadAuthorsSuccess(authors));
         }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function saveAuthor(author){
+    return function(dispatch, getState){
+        dispatch(beginAjaxCall());
+        return authorsApi.saveAuthor(author).then(savedAuthor => {
+            author.id ? dispatch(updateAuthorSuccess(savedAuthor)) :
+            dispatch(createAuthorSuccess(savedAuthor));
+        }).catch(error => {
+            dispatch(ajaxCallError());
             throw(error);
         });
     };

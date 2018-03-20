@@ -7,6 +7,7 @@ import CoursesPage from './components/course/CoursesPage';
 import ManageCoursePage from './components/course/ManageCoursePage'; //eslint-disable-line import/no-named-as-default
 
 import AuthorsPage from './components/author/AuthorsPage';
+import ManageAuthorPage from './components/author/ManageAuthorPage'; //eslint-disable-line import/no-named-as-default
 
 export default (
     <Switch>
@@ -18,6 +19,8 @@ export default (
             <Route path="/course/:id" component={ManageCoursePage} />
 
             <Route path="/authors" component={AuthorsPage} />
+            <Route exact path="/author" component={ManageAuthorPage} />
+            <Route path="/author/:id" component={ManageAuthorPage} />
         </App>
     </Switch>  
 );
