@@ -21,23 +21,13 @@ class CategoriesPage extends React.Component{
     }
 
     deleteCategory(categoryId) {
-        if (!this.isCategoryInUse(categoryId)) {
-            this.props.actions.deleteCategory(categoryId)
+        this.props.actions.deleteCategory(categoryId)
             .then(() => {
                 toastr.success('Category deleted');
             })
             .catch(error => {
                 toastr.error(error);
             });
-        } else {
-            toastr.error('Cannot delete category used in courses');
-        }
-    }
-
-    isCategoryInUse(categoryId) {
-        return this.props.courses.some(function (course) {
-            return course.CategoryId === categoryId;
-        });
     }
 
     render() {
@@ -52,14 +42,12 @@ class CategoriesPage extends React.Component{
 
 CategoriesPage.propTypes = {
     categories: PropTypes.array.isRequired,
-    courses: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps){
     return {
-        categories: state.categories,
-        courses: state.courses
+        categories: state.categories
     };
 }
 

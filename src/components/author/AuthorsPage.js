@@ -21,23 +21,13 @@ class AuthorsPage extends React.Component{
     }
 
     deleteAuthor(authorId) {
-        if (!this.isAuthorInUse(authorId)) {
-            this.props.actions.deleteAuthor(authorId)
+        this.props.actions.deleteAuthor(authorId)
             .then(() => {
                 toastr.success('Author deleted');
             })
             .catch(error => {
                 toastr.error(error);
             });
-        } else {
-            toastr.error('Cannot delete author with active courses');
-        }
-    }
-
-    isAuthorInUse(authorId) {
-        return this.props.courses.some(function (course) {
-            return course.authorId === authorId;
-        });
     }
 
     render() {
@@ -52,14 +42,12 @@ class AuthorsPage extends React.Component{
 
 AuthorsPage.propTypes = {
     authors: PropTypes.array.isRequired,
-    courses: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps){
     return {
-        authors: state.authors,
-        courses: state.courses
+        authors: state.authors
     };
 }
 

@@ -7,19 +7,19 @@ import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 
 describe ('Course actions', () => {
-  describe ('create CourseSuccess', () => {
-    it('should create a CREATE_COURSE_SUCCESS action', () => {
-        const course = [
-          {id: 'clean-code', title: 'Clean Code'}
-        ];
-        const expectedAction = {
-            type: types.CREATE_COURSE_SUCCESS,
-            course: course
-        };
-        const action = courseActions.createCourseSuccess(course);
-        expect(action).toEqual(expectedAction);
+    describe ('create CourseSuccess', () => {
+        it('should create a CREATE_COURSE_SUCCESS action', () => {
+            const course = [
+            {id: 'clean-code', title: 'Clean Code'}
+            ];
+            const expectedAction = {
+                type: types.CREATE_COURSE_SUCCESS,
+                course: course
+            };
+            const action = courseActions.createCourseSuccess(course);
+            expect(action).toEqual(expectedAction);
+        });
     });
-  });
 });
 
 const middleware = [thunk];
@@ -52,6 +52,3 @@ const mockStore = configureMockStore(middleware);
 //     })
 //   });
 // });
-
-
-
