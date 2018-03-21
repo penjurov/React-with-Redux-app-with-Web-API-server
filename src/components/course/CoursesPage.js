@@ -11,8 +11,12 @@ class CoursesPage extends React.Component{
         this.deleteCourse = this.deleteCourse.bind(this);
     }
 
+    componentWillMount() {
+        this.props.actions.loadCourses();
+    }
+
     courseRow(course, index){
-        return <div key={index}>{course.title}</div>;
+        return <div key={index}>{course.Title}</div>;
     }
 
     deleteCourse(courseId){

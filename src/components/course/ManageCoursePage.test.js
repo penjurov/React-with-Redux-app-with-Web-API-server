@@ -7,14 +7,15 @@ describe ('Manage Course Page', () => {
     it('sets error message when trying to save empty title', () => {
         const props = {
             course: {
-                id: "",
-                watchHref: "",
-                title: "",
-                authorId: "",
-                length: "",
-                category: ""
+                Id: "",
+                Url: "",
+                Title: "",
+                AuthorId: "",
+                Length: "",
+                CategoryId: ""
               },
               authors: [],
+              categories: [],
               actions: {saveCourse: () => {return Promise.resolve(); }}
         };
         const wrapper = mount(<ManageCoursePage {...props}/>);

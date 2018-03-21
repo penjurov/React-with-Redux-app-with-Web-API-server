@@ -2,36 +2,38 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({course, title, allAuthors, onSave, onChange, saving, errors}) => {
+const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange, saving, errors}) => {
     return(
         <form>
             <h1>{title}</h1>
             <TextInput 
-                name="title"
+                name="Title"
                 label="Title"
-                value={course.title}
+                value={course.Title}
                 onChange={onChange}
-                error={errors.title}/>
+                error={errors.Title}/>
             <SelectInput 
-                name="authorId"
+                name="AuthorId"
                 label="Author"
-                value={course.authorId}
+                value={course.AuthorId.toString()}
                 defaultOption="Select Author"
                 options={allAuthors}
                 onChange={onChange}
-                error={errors.authorId}/>
-            <TextInput 
-                name="category"
+                error={errors.AuthorId}/>
+            <SelectInput 
+                name="CategoryId"
                 label="Category"
-                value={course.category}
+                value={course.CategoryId.toString()}
+                defaultOption="Select Category"
+                options={allCategories}
                 onChange={onChange}
-                error={errors.category}/>
+                error={errors.CategoryId}/>
             <TextInput 
-                name="length"
+                name="Length"
                 label="Length"
-                value={course.length}
+                value={course.Length}
                 onChange={onChange}
-                error={errors.length}/>
+                error={errors.Length}/>
             <input 
                 type="submit"
                 disabled={saving}
@@ -46,6 +48,7 @@ CourseForm.propTypes = {
     course: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     allAuthors: PropTypes.array.isRequired,
+    allCategories: PropTypes.array.isRequired,
     onSave: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     saving: PropTypes.bool,

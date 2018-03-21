@@ -14,7 +14,7 @@ export default function categoryReducer(state = initialState.categories, action)
 
         case types.UPDATE_CATEGORY_SUCCESS:
             return [
-                ...state.filter(category => category.id !== action.category.id),
+                ...state.filter(category => category.Id !== action.category.Id),
                 Object.assign({}, action.category)
             ];
 

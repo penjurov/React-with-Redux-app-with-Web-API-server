@@ -19,7 +19,7 @@ export class ManageCategoryPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.category.id != nextProps.category.id){
+        if(this.props.category.Id != nextProps.category.Id){
             this.setState({category: Object.assign({}, nextProps.category)});
         }
     }
@@ -35,7 +35,7 @@ export class ManageCategoryPage extends React.Component {
         let formIsValid = true;
         let errors = {};
 
-        if (this.state.category.title.length < 0){
+        if (this.state.category.Title.length < 0){
             errors.title= "Title is required.";
             formIsValid = false;
         }
@@ -72,7 +72,7 @@ export class ManageCategoryPage extends React.Component {
         return (
             <CategoryForm
                 category={this.state.category}
-                title={this.state.category.id ? 'Edit category' : 'Add category'}
+                title={this.state.category.Id ? 'Edit category' : 'Add category'}
                 errors={this.state.errors}
                 onChange={this.updateCategoryState}
                 onSave={this.saveCategory}
@@ -92,7 +92,7 @@ ManageCategoryPage.contextTypes = {
 };
 
 function getCategoryById(categories, id) {
-    const category = categories.filter(category => category.id == id);
+    const category = categories.filter(category => category.Id == id);
 
     if(category){
         return category[0];
@@ -105,8 +105,8 @@ function mapStateToProps(state, ownProps) {
     const categoryId = ownProps.match.params.id;
 
     let category = {
-        id: "",
-        title: ""
+        Id: "",
+        Title: ""
     };
 
     if (categoryId && state.categories.length > 0){

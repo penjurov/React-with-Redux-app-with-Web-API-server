@@ -12,8 +12,12 @@ class AuthorsPage extends React.Component{
         this.deleteAuthor = this.deleteAuthor.bind(this);
     }
 
+    componentWillMount() {
+        this.props.actions.loadAuthors();
+    }
+
     authorRow(author, index) {
-        return <div key={index}>{author.firstName + ' ' + author.lastName}</div>;
+        return <div key={index}>{author.FirstName + ' ' + author.LastName}</div>;
     }
 
     deleteAuthor(authorId) {

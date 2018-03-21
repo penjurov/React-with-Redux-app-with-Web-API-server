@@ -6,11 +6,11 @@ const CategoryForm = ({category, title, onSave, onChange, saving, errors}) => {
         <form>
             <h1>{title}</h1>
            <TextInput 
-                name="title"
+                name="Title"
                 label="Title"
-                value={category.title}
+                value={category.Title}
                 onChange={onChange}
-                error={errors.firstName}/>
+                error={errors.Title}/>
             <input 
                 type="submit"
                 disabled={saving}

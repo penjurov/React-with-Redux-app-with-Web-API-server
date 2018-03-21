@@ -12,8 +12,12 @@ class CategoriesPage extends React.Component{
         this.deleteCategory = this.deleteCategory.bind(this);
     }
 
+    componentWillMount() {
+        this.props.actions.loadCategories();
+    }
+
     categoryRow(category, index) {
-        return <div key={index}>{category.title}</div>;
+        return <div key={index}>{category.Title}</div>;
     }
 
     deleteCategory(categoryId) {
@@ -32,7 +36,7 @@ class CategoriesPage extends React.Component{
 
     isCategoryInUse(categoryId) {
         return this.props.courses.some(function (course) {
-            return course.categoryId === categoryId;
+            return course.CategoryId === categoryId;
         });
     }
 

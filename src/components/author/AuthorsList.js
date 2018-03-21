@@ -13,7 +13,7 @@ const AuthorsList = ({authors, deleteAuthor}) => {
             </thead>
             <tbody> 
                 {authors.map(author =>
-                    <AuthorListRow key={author.id} author={author} deleteAuthor={deleteAuthor}/>
+                    <AuthorListRow key={author.Id} author={author} deleteAuthor={deleteAuthor}/>
                 )}
             </tbody>
         </table>

@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 
 const CategoryListRow = ({category, deleteCategory}) => {
     const deleteHandler = () => {
-        deleteCategory(category.id);
+        deleteCategory(category.Id);
     };
 
     return (
         <tr>
-            <td>{category.id}</td>
-            <td><Link to={'/category/' + category.id}>{category.title}</Link></td>
+            <td>{category.Id}</td>
+            <td><Link to={'/category/' + category.Id}>{category.Title}</Link></td>
             <td><span className="glyphicon glyphicon-trash delete-action" onClick={deleteHandler}></span></td>
         </tr>
     );

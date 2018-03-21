@@ -6,17 +6,17 @@ const AuthorForm = ({author, title, onSave, onChange, saving, errors}) => {
         <form>
             <h1>{title}</h1>
            <TextInput 
-                name="firstName"
+                name="FirstName"
                 label="First Name"
-                value={author.firstName}
+                value={author.FirstName}
                 onChange={onChange}
-                error={errors.firstName}/>
+                error={errors.FirstName}/>
              <TextInput 
-                name="lastName"
+                name="LastName"
                 label="Last Name"
-                value={author.lastName}
+                value={author.LastName}
                 onChange={onChange}
-                error={errors.lastName}/>
+                error={errors.LastName}/>
             <input 
                 type="submit"
                 disabled={saving}

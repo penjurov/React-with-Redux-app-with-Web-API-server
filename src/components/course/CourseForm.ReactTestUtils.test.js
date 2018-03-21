@@ -5,7 +5,13 @@ import CourseForm from './CourseForm';
 
 function setup(saving){
     let props = {
-        course: {}, 
+        course: {
+            AuthorId: '',
+            CategoryId: ''
+        }, 
+        title: '',
+        allAuthors: [],
+        allCategories: [],
         saving: saving, 
         errors: {},
         onSave: () => {},

@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import courseApi from '../api/mockCourseApi';
+import courseApi from '../api/courseApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function loadCoursesSuccess(courses){
@@ -20,12 +20,6 @@ export function updateCourseSuccess(course){
     };
 }
 
-export function authorUpdated(author){
-    return {
-        type: types.AUTHOR_UPDATED, author
-    };
-}
-
 export function loadCourses(){
     return function(dispatch){
         dispatch(beginAjaxCall());
@@ -42,7 +36,7 @@ export function saveCourse(course){
     return function(dispatch){
         dispatch(beginAjaxCall());
         return courseApi.saveCourse(course).then(savedCourse => {
-            course.id ? dispatch(updateCourseSuccess(savedCourse)) :
+            course.Id ? dispatch(updateCourseSuccess(savedCourse)) :
             dispatch(createCourseSuccess(savedCourse));
         }).catch(error => {
             dispatch(ajaxCallError());
@@ -54,14 +48,15 @@ export function saveCourse(course){
 export function deleteCourse(courseId){
     return function(dispatch){
         dispatch(beginAjaxCall());
-        courseApi.deleteCourse(courseId).catch(error => {
-            dispatch(ajaxCallError());
-            throw(error);
-        });
-
-        return courseApi.getAllCourses().then(courses => {
-            dispatch(loadCoursesSuccess(courses));
+        
+        return courseApi.deleteCourse(courseId).then(() => {
+            courseApi.getAllCourses().then(courses => {
+                dispatch(loadCoursesSuccess(courses));
+            }).catch(error => {
+                throw(error);
+            });
         }).catch(error => {
+            dispatch(ajaxCallError());
             throw(error);
         });
     };

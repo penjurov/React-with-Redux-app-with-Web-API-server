@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import * as courseActions from "../../actions/courseActions";
 import CourseForm from "./CourseForm";
 import toastr from "toastr";
-import {authorsFormattedForDropdown} from "../../selectors/selectors";
+import {authorsFormattedForDropdown, categoriesFormattedForDropdown} from "../../selectors/selectors";
 
 export class ManageCoursePage extends React.Component {
   constructor(props, context) {
@@ -20,7 +20,7 @@ export class ManageCoursePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.course.id != nextProps.course.id){
+    if(this.props.course.Id != nextProps.course.Id){
       this.setState({course: Object.assign({}, nextProps.course)});
     }
   }
@@ -36,7 +36,7 @@ export class ManageCoursePage extends React.Component {
     let formIsValid = true;
     let errors = {};
 
-    if (this.state.course.title.length < 5){
+    if (this.state.course.Title.length < 5){
       errors.title= "Title must be at least 5 characters.";
       formIsValid = false;
     }
@@ -72,8 +72,9 @@ export class ManageCoursePage extends React.Component {
     return (
         <CourseForm
           allAuthors={this.props.authors}
+          allCategories={this.props.categories}
           course={this.state.course}
-          title={this.state.course.id ? 'Edit course' : 'Add course'}
+          title={this.state.course.Id ? 'Edit course' : 'Add course'}
           errors={this.state.errors}
           onChange={this.updateCourseState}
           onSave={this.saveCourse}
@@ -86,6 +87,7 @@ export class ManageCoursePage extends React.Component {
 ManageCoursePage.propTypes = {
     course: PropTypes.object.isRequired,
     authors: PropTypes.array.isRequired,
+    categories: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
@@ -94,7 +96,7 @@ ManageCoursePage.contextTypes = {
 };
 
 function getCourseById(courses, id) {
-  const course = courses.filter(course => course.id == id);
+  const course = courses.filter(course => course.Id == id);
   if(course){
     return course[0];
   }
@@ -104,12 +106,12 @@ function getCourseById(courses, id) {
 function mapStateToProps(state, ownProps) {
   const courseId = ownProps.match.params.id;
   let course = {
-    id: "",
-    watchHref: "",
-    title: "",
-    authorId: "",
-    length: "",
-    category: ""
+    Id: "",
+    Url: "",
+    Title: "",
+    AuthorId: "",
+    Length: "",
+    CategoryId: ""
   };
 
   if(courseId && state.courses.length > 0){
@@ -118,7 +120,8 @@ function mapStateToProps(state, ownProps) {
 
   return {
     course: course,
-    authors: authorsFormattedForDropdown(state.authors)
+    authors: authorsFormattedForDropdown(state.authors),
+    categories: categoriesFormattedForDropdown(state.categories)
   };
 }
 

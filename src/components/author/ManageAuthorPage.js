@@ -15,12 +15,13 @@ export class ManageAuthorPage extends React.Component {
             errors: {},
             saving: false
         };
+        
         this.updateAuthorState = this.updateAuthorState.bind(this);
         this.saveAuthor = this.saveAuthor.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.author.id != nextProps.author.id){
+        if(this.props.author.Id != nextProps.author.Id){
             this.setState({author: Object.assign({}, nextProps.author)});
         }
     }
@@ -36,12 +37,12 @@ export class ManageAuthorPage extends React.Component {
         let formIsValid = true;
         let errors = {};
 
-        if (this.state.author.firstName.length < 0){
+        if (this.state.author.FirstName.length < 0){
             errors.title= "First name is required.";
             formIsValid = false;
         }
 
-        if (this.state.author.lastName.length < 0){
+        if (this.state.author.LastName.length < 0){
             errors.title= "Last name is required.";
             formIsValid = false;
         }
@@ -61,7 +62,6 @@ export class ManageAuthorPage extends React.Component {
         this.setState({saving: true});
 
         this.props.authorActions.saveAuthor(this.state.author)
-            .then((author) => this.props.courseActions.authorUpdated(author))
             .then(() => this.redirect())
             .catch(error => {
                 toastr.error(error);
@@ -79,7 +79,7 @@ export class ManageAuthorPage extends React.Component {
         return (
             <AuthorForm
                 author={this.state.author}
-                title={this.state.author.id ? 'Edit author' : 'Add author'}
+                title={this.state.author.Id ? 'Edit author' : 'Add author'}
                 errors={this.state.errors}
                 onChange={this.updateAuthorState}
                 onSave={this.saveAuthor}
@@ -100,7 +100,7 @@ ManageAuthorPage.contextTypes = {
 };
 
 function getAuthorById(authors, id) {
-    const author = authors.filter(author => author.id == id);
+    const author = authors.filter(author => author.Id == id);
 
     if(author){
         return author[0];
@@ -113,9 +113,9 @@ function mapStateToProps(state, ownProps) {
     const authorId = ownProps.match.params.id;
 
     let author = {
-        id: "",
-        firstName: "",
-        lastName: ""
+        Id: "",
+        FirstName: "",
+        LastName: ""
     };
 
     if (authorId && state.authors.length > 0){

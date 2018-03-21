@@ -13,7 +13,7 @@ const CategoriesList = ({categories, deleteCategory}) => {
             </thead>
             <tbody> 
                 {categories.map(category =>
-                    <CategoryListRow key={category.id} category={category} deleteCategory={deleteCategory}/>
+                    <CategoryListRow key={category.Id} category={category} deleteCategory={deleteCategory}/>
                 )}
             </tbody>
         </table>

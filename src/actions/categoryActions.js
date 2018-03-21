@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import categoryApi from '../api/mockCategoryApi';
+import categoryApi from '../api/categoryApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function loadCategoriesSuccess(categories){
@@ -35,7 +35,7 @@ export function saveCategory(category){
     return function(dispatch, getState){
         dispatch(beginAjaxCall());
         return categoryApi.saveCategory(category).then(savedCategory => {
-            category.id ? dispatch(updateCategorySuccess(savedCategory)) :
+            category.Id ? dispatch(updateCategorySuccess(savedCategory)) :
             dispatch(createCategorySuccess(savedCategory));
         }).catch(error => {
             dispatch(ajaxCallError());
@@ -47,14 +47,15 @@ export function saveCategory(category){
 export function deleteCategory(categoryId){
     return function(dispatch, getState){
         dispatch(beginAjaxCall());
-        categoryApi.deleteCategory(categoryId).catch(error => {
-            dispatch(ajaxCallError());
-            throw(error);
-        });
-
-        return categoryApi.getAllCategories().then(categories => {
-            dispatch(loadCategoriesSuccess(categories));
+        
+        return categoryApi.deleteCategory(categoryId).then(() => {
+            categoryApi.getAllCategories().then(categories => {
+                dispatch(loadCategoriesSuccess(categories));
+            }).catch(error => {
+                throw(error);
+            });
         }).catch(error => {
+            dispatch(ajaxCallError());
             throw(error);
         });
     };

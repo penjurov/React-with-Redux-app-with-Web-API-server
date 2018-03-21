@@ -3,16 +3,16 @@ import {Link} from 'react-router-dom';
 
 const CourseListRow = ({course, deleteCourse}) => {
     const deleteHandler = () => {
-        deleteCourse(course.id);
+        deleteCourse(course.Id);
     };
 
     return (
         <tr>
-            <td><a href={course.watchHref} target="_blank">Watch</a></td>
-            <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
-            <td>{course.authorName}</td>
-            <td>{course.categoryTitle}</td>
-            <td>{course.length}</td>
+            <td><a href={course.Url} target="_blank">Watch</a></td>
+            <td><Link to={'/course/' + course.Id}>{course.Title}</Link></td>
+            <td>{course.AuthorName}</td>
+            <td>{course.CategoryTitle}</td>
+            <td>{course.Length}</td>
             <td><span className="glyphicon glyphicon-trash delete-action" onClick={deleteHandler}></span></td>
         </tr>
     );

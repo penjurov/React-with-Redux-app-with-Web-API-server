@@ -14,7 +14,7 @@ export default function authorReducer(state = initialState.authors, action){
 
         case types.UPDATE_AUTHOR_SUCCESS:
             return [
-                ...state.filter(author => author.id !== action.author.id),
+                ...state.filter(author => author.Id !== action.author.Id),
                 Object.assign({}, action.author)
             ];
 

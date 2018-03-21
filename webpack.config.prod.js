@@ -3,7 +3,8 @@ import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production')
+  'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env.SERVER_URL': JSON.stringify('http://localhost:52374/Api')
 };
 
 export default {

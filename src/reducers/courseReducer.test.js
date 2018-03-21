@@ -21,19 +21,19 @@ describe ('Course reducer', () => {
 
     it('should update a course when passed UPDATE_COURSE_SUCCESS', () => {
         const initialState = [
-          {id: 'A', title: 'A'},
-          {id: 'B', title: 'B'},
-          {id: 'C', title: 'C'}
+          {Id: 'A', Title: 'A'},
+          {Id: 'B', Title: 'B'},
+          {Id: 'C', Title: 'C'}
         ];
-        const course = {id: 'B', title: 'New title'};
+        const course = {Id: 'B', Title: 'New title'};
         const action = actions.updateCourseSuccess(course);
 
         const newState = courseReducer(initialState, action);
-        const updatedCourse = newState.find(a => a.id == course.id);
-        const untouchedCourse = newState.find(a => a.id == 'A');
+        const updatedCourse = newState.find(a => a.Id == course.Id);
+        const untouchedCourse = newState.find(a => a.Id == 'A');
 
-        expect(updatedCourse.title).toEqual('New title');
-        expect(untouchedCourse.title).toEqual('A');
+        expect(updatedCourse.Title).toEqual('New title');
+        expect(untouchedCourse.Title).toEqual('A');
         expect(newState.length).toEqual(3);
     });
   });
