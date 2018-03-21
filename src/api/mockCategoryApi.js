@@ -28,8 +28,11 @@ const categories = [
 
 //This would be performed on the server in a real app. Just stubbing in.
 const generateId = () => {
-    let maxId = Math.max.apply(Math,categories.map(function(o){return o.y;}));
-    return maxId++;
+  let maxId = Math.max(...categories.map(function(category){
+    return category.id;
+  }));
+
+  return ++maxId;
 };
 
 class CategoryApi {
@@ -46,7 +49,7 @@ class CategoryApi {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
-        const minTitleLength = 3;
+        const minTitleLength = 1;
         if (category.title.length < minTitleLength) {
           reject(`Title must be at least ${minTitleLength} characters.`);
         }

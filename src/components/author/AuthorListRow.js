@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router-dom';
 
 const AuthorListRow = ({author, deleteAuthor}) => {
     const deleteHandler = () => {
@@ -8,8 +9,7 @@ const AuthorListRow = ({author, deleteAuthor}) => {
     return (
         <tr>
             <td>{author.id}</td>
-            <td>{author.firstName}</td>
-            <td>{author.lastName}</td>
+            <td><Link to={'/author/' + author.id}>{author.name}</Link></td>
             <td><span className="glyphicon glyphicon-trash delete-action" onClick={deleteHandler}></span></td>
         </tr>
     );

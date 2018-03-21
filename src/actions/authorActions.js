@@ -36,8 +36,8 @@ export function saveAuthor(author){
     return function(dispatch, getState){
         dispatch(beginAjaxCall());
         return authorsApi.saveAuthor(author).then(savedAuthor => {
-            author.id ? dispatch(updateAuthorSuccess(savedAuthor)) :
-            dispatch(createAuthorSuccess(savedAuthor));
+            author.id ? dispatch(updateAuthorSuccess(savedAuthor)) :dispatch(createAuthorSuccess(savedAuthor));
+            return savedAuthor;
         }).catch(error => {
             dispatch(ajaxCallError());
             throw(error);

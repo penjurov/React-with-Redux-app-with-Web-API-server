@@ -23,15 +23,23 @@ const authors = [
 
 //This would be performed on the server in a real app. Just stubbing in.
 const generateId = () => {
-  let maxId = Math.max.apply(Math,authors.map(function(o){return o.y;}));
-  return maxId++;
+  let maxId = Math.max(...authors.map(function(author){
+    return author.id;
+  }));
+
+  return ++maxId;
 };
 
 class AuthorApi {
   static getAllAuthors() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], authors));
+        
+        let result = authors.map(function (author) {
+          return Object.assign(author, { name: author.firstName + ' ' + author.lastName});
+        });
+
+        resolve(Object.assign([], result));
       }, delay);
     });
   }
@@ -49,6 +57,8 @@ class AuthorApi {
         if (author.lastName.length < minAuthorNameLength) {
           reject(`Last Name must be at least ${minAuthorNameLength} characters.`);
         }
+
+        author.name = author.firstName + ' ' + author.lastName;
 
         if (author.id) {
           const existingAuthorIndex = authors.findIndex(a => a.id == author.id);

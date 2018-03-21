@@ -20,11 +20,18 @@ export function updateCourseSuccess(course){
     };
 }
 
+export function authorUpdated(author){
+    return {
+        type: types.AUTHOR_UPDATED, author
+    };
+}
+
 export function loadCourses(){
     return function(dispatch){
         dispatch(beginAjaxCall());
         return courseApi.getAllCourses().then(courses => {
             dispatch(loadCoursesSuccess(courses));
+            return courses;
         }).catch(error => {
             throw(error);
         });
@@ -32,7 +39,7 @@ export function loadCourses(){
 }
 
 export function saveCourse(course){
-    return function(dispatch, getState){
+    return function(dispatch){
         dispatch(beginAjaxCall());
         return courseApi.saveCourse(course).then(savedCourse => {
             course.id ? dispatch(updateCourseSuccess(savedCourse)) :
@@ -45,7 +52,7 @@ export function saveCourse(course){
 }
 
 export function deleteCourse(courseId){
-    return function(dispatch, getState){
+    return function(dispatch){
         dispatch(beginAjaxCall());
         courseApi.deleteCourse(courseId).catch(error => {
             dispatch(ajaxCallError());

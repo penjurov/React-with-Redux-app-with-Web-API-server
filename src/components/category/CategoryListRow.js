@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router-dom';
 
 const CategoryListRow = ({category, deleteCategory}) => {
     const deleteHandler = () => {
@@ -8,7 +9,7 @@ const CategoryListRow = ({category, deleteCategory}) => {
     return (
         <tr>
             <td>{category.id}</td>
-            <td>{category.title}</td>
+            <td><Link to={'/category/' + category.id}>{category.title}</Link></td>
             <td><span className="glyphicon glyphicon-trash delete-action" onClick={deleteHandler}></span></td>
         </tr>
     );

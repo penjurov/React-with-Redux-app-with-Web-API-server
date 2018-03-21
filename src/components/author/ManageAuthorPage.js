@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authorActions from "../../actions/authorActions";
+import * as courseActions from "../../actions/courseActions";
 import AuthorForm from "./AuthorForm";
 import toastr from "toastr";
 
@@ -59,7 +60,8 @@ export class ManageAuthorPage extends React.Component {
 
         this.setState({saving: true});
 
-        this.props.actions.saveAuthor(this.state.author)
+        this.props.authorActions.saveAuthor(this.state.author)
+            .then((author) => this.props.courseActions.authorUpdated(author))
             .then(() => this.redirect())
             .catch(error => {
                 toastr.error(error);
@@ -89,7 +91,8 @@ export class ManageAuthorPage extends React.Component {
 
 ManageAuthorPage.propTypes = {
     author: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    authorActions: PropTypes.object.isRequired,
+    courseActions: PropTypes.object.isRequired
 };
 
 ManageAuthorPage.contextTypes = {
@@ -126,7 +129,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(authorActions, dispatch)
+        authorActions: bindActionCreators(authorActions, dispatch),
+        courseActions: bindActionCreators(courseActions, dispatch)
     };
 }
 

@@ -12,6 +12,7 @@ import AuthorsPage from './components/author/AuthorsPage';
 import ManageAuthorPage from './components/author/ManageAuthorPage'; //eslint-disable-line import/no-named-as-default
 
 import CategoriesPage from './components/category/CategoriesPage';
+import ManageCategoryPage from './components/category/ManageCategoryPage'; //eslint-disable-line import/no-named-as-default
 
 export default (
     <Switch>
@@ -26,7 +27,9 @@ export default (
             <Route exact path="/author" component={ManageAuthorPage} />
             <Route path="/author/:id" component={ManageAuthorPage} />
 
-             <Route path="/categories" component={CategoriesPage} />
+            <Route path="/categories" component={CategoriesPage} />
+            <Route exact path="/category" component={ManageCategoryPage} />
+            <Route path="/category/:id" component={ManageCategoryPage} />
         </App>
     </Switch>  
 );
