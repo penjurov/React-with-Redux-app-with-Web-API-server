@@ -7,7 +7,19 @@ class CourseApi {
         return new Promise((resolve, reject) => {
             axios.get(BASE_API_URL)
                 .then(function (response) {
-                    resolve(Object.assign([], response.data));
+                    resolve(response.data);
+                })
+                .catch(function (error) {
+                    reject(error);
+                });
+        });
+    }
+
+    static getCourse(courseId) {
+        return new Promise((resolve, reject) => {
+            axios.get(BASE_API_URL + '/' + courseId)
+                .then(function (response) {
+                    resolve(response.data);
                 })
                 .catch(function (error) {
                     reject(error);

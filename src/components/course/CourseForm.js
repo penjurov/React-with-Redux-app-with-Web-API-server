@@ -3,17 +3,26 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 import Submit from '../common/Submit';
 import Form from '../common/Form';
+import ChapterList from './ChapterList';
 
-const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange, saving, errors}) => {
+const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange, onAddChapterClick, deleteChapter, saving, errors}) => {
     return(
         <Form 
             title={title}>
+            
             <TextInput 
                 name="Title"
                 label="Title"
                 value={course.Title}
                 onChange={onChange}
                 error={errors.Title}
+                inputClass="col-sm-10 col-xs-12"/>
+            <TextInput 
+                name="Url"
+                label="Url"
+                value={course.Url}
+                onChange={onChange}
+                error={errors.Url}
                 inputClass="col-sm-10 col-xs-12"/>
             <SelectInput 
                 name="AuthorId"
@@ -40,6 +49,9 @@ const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange,
                 onChange={onChange}
                 error={errors.Length}
                 inputClass="col-sm-10 col-xs-12"/>
+
+            <ChapterList chapters = {course.Chapters} onAddChapterClick = {onAddChapterClick} deleteChapter = {deleteChapter} />
+            
             <Submit
                 saving={saving}
                 onSave={onSave}
@@ -55,6 +67,8 @@ CourseForm.propTypes = {
     allCategories: PropTypes.array.isRequired,
     onSave: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
+    onAddChapterClick: PropTypes.func.isRequired,
+    deleteChapter: PropTypes.func.isRequired,
     saving: PropTypes.bool,
     errors: PropTypes.object
 };

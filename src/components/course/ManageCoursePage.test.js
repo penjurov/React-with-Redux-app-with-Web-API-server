@@ -12,7 +12,8 @@ describe ('Manage Course Page', () => {
                 Title: "",
                 AuthorId: "",
                 Length: "",
-                CategoryId: ""
+                CategoryId: "",
+                Chapters: []
               },
               authors: [],
               categories: [],
