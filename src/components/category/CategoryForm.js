@@ -1,23 +1,24 @@
 import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
+import Submit from '../common/Submit';
+import Form from '../common/Form';
 
 const CategoryForm = ({category, title, onSave, onChange, saving, errors}) => {
     return(
-        <form>
-            <h1>{title}</h1>
-           <TextInput 
+        <Form 
+            title={title}>
+            <TextInput 
                 name="Title"
                 label="Title"
                 value={category.Title}
                 onChange={onChange}
-                error={errors.Title}/>
-            <input 
-                type="submit"
-                disabled={saving}
-                value={saving ? 'Saving...' : 'Save'}
-                className="btn btn-primary"
-                onClick={onSave}/>
-        </form>
+                error={errors.Title}
+                inputClass="col-sm-10 col-xs-12"/>
+            <Submit
+                saving={saving}
+                onSave={onSave}
+                inputClass="col-sm-offset-2 col-sm-10 col-xs-12"/>
+        </Form>
     );
 };
 

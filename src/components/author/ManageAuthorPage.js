@@ -18,12 +18,26 @@ export class ManageAuthorPage extends React.Component {
         
         this.updateAuthorState = this.updateAuthorState.bind(this);
         this.saveAuthor = this.saveAuthor.bind(this);
+        this.onImageSelect = this.onImageSelect.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
         if(this.props.author.Id != nextProps.author.Id){
             this.setState({author: Object.assign({}, nextProps.author)});
         }
+    }
+
+    onImageSelect(event) {
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        let author = Object.assign({}, this.state.author);
+
+        reader.onloadend = () => {
+            author.Image = reader.result;
+            this.setState({author: author});
+        };
+
+        reader.readAsDataURL(file);
     }
 
     updateAuthorState(event){
@@ -37,13 +51,13 @@ export class ManageAuthorPage extends React.Component {
         let formIsValid = true;
         let errors = {};
 
-        if (this.state.author.FirstName.length < 0){
-            errors.title= "First name is required.";
+        if (this.state.author.FirstName.length < 1){
+            errors.FirstName= "First name is required.";
             formIsValid = false;
         }
 
-        if (this.state.author.LastName.length < 0){
-            errors.title= "Last name is required.";
+        if (this.state.author.LastName.length < 1){
+            errors.LastName= "Last name is required.";
             formIsValid = false;
         }
 
@@ -82,6 +96,7 @@ export class ManageAuthorPage extends React.Component {
                 title={this.state.author.Id ? 'Edit author' : 'Add author'}
                 errors={this.state.errors}
                 onChange={this.updateAuthorState}
+                onImageSelect={this.onImageSelect}
                 onSave={this.saveAuthor}
                 saving = {this.state.saving}
             />
@@ -115,7 +130,8 @@ function mapStateToProps(state, ownProps) {
     let author = {
         Id: "",
         FirstName: "",
-        LastName: ""
+        LastName: "",
+        Image: ""
     };
 
     if (authorId && state.authors.length > 0){

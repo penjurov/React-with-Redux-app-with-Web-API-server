@@ -3,6 +3,10 @@
     min-width: 550px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+#app h2 {
+    margin-top: 0px;
+}
+
 .nav-main a, .nav-main a:hover {
     text-decoration: none;
     color: #777;
@@ -14,4 +18,28 @@ a.active{
 
 span.delete-action {
     cursor: pointer;
+}
+
+div.file {
+    position: relative;
+    overflow: hidden;
+}
+
+div.file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.top-buffer {
+    margin-top: 15px;
+}
+
+.select-image-preview-wrapper {
+    line-height: 0;
 }

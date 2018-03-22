@@ -1,17 +1,20 @@
 import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+import Submit from '../common/Submit';
+import Form from '../common/Form';
 
 const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange, saving, errors}) => {
     return(
-        <form>
-            <h1>{title}</h1>
+        <Form 
+            title={title}>
             <TextInput 
                 name="Title"
                 label="Title"
                 value={course.Title}
                 onChange={onChange}
-                error={errors.Title}/>
+                error={errors.Title}
+                inputClass="col-sm-10 col-xs-12"/>
             <SelectInput 
                 name="AuthorId"
                 label="Author"
@@ -19,7 +22,8 @@ const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange,
                 defaultOption="Select Author"
                 options={allAuthors}
                 onChange={onChange}
-                error={errors.AuthorId}/>
+                error={errors.AuthorId}
+                inputClass="col-sm-10 col-xs-12"/>
             <SelectInput 
                 name="CategoryId"
                 label="Category"
@@ -27,20 +31,20 @@ const CourseForm = ({course, title, allAuthors, allCategories, onSave, onChange,
                 defaultOption="Select Category"
                 options={allCategories}
                 onChange={onChange}
-                error={errors.CategoryId}/>
+                error={errors.CategoryId}
+                inputClass="col-sm-10 col-xs-12"/>
             <TextInput 
                 name="Length"
                 label="Length"
                 value={course.Length}
                 onChange={onChange}
-                error={errors.Length}/>
-            <input 
-                type="submit"
-                disabled={saving}
-                value={saving ? 'Saving...' : 'Save'}
-                className="btn btn-primary"
-                onClick={onSave}/>
-        </form>
+                error={errors.Length}
+                inputClass="col-sm-10 col-xs-12"/>
+            <Submit
+                saving={saving}
+                onSave={onSave}
+                inputClass="col-sm-offset-2 col-sm-10 col-xs-12"/>
+        </Form>
     );
 };
 

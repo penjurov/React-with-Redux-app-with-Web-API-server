@@ -1,15 +1,17 @@
 import React, {PropTypes} from 'react';
 
-const TextInput = ({name, label, onChange, placeholder, value, error}) => {
-    let wrapperClass = 'form-group';
+const TextInput = ({name, label, inputClass, onChange, placeholder, value, error}) => {
+    let wrapperClass = 'form-group row';
     if(error && error.length > 0){
         wrapperClass += " " + "has-error";
     }
 
+    inputClass = inputClass || "col-sm-6 col-md-4 col-xs-12";
+
     return (
         <div className={wrapperClass}>
-            <label htmlFor={name}>{label}</label>
-            <div className="field">
+            <label className="col-sm-2 col-xs-12" htmlFor={name}>{label}</label>
+            <div className={inputClass}>
                 <input 
                     type="text"
                     name={name}
@@ -29,7 +31,8 @@ TextInput.propTypes = {
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     value: PropTypes.string,
-    error: PropTypes.string
+    error: PropTypes.string,
+    inputClass: PropTypes.string
 };
 
 export default TextInput;
