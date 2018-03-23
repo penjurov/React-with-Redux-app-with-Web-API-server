@@ -3,7 +3,7 @@ import AuthorListRow from './AuthorListRow';
 
 const AuthorsList = ({authors, deleteAuthor}) => {
     return (
-        <table className="table">
+        <table className="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>

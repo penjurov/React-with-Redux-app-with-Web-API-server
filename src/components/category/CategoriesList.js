@@ -3,7 +3,7 @@ import CategoryListRow from './CategoryListRow';
 
 const CategoriesList = ({categories, deleteCategory}) => {
     return (
-        <table className="table">
+        <table className="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>

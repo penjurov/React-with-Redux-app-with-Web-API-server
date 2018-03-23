@@ -14,9 +14,6 @@ import '../node_modules/toastr/build/toastr.min.css';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
-store.dispatch(loadCourses());
-store.dispatch(loadAuthors());
-store.dispatch(loadCategories());
 
 render(
     <Provider store={store}>

@@ -10,8 +10,9 @@ const Header = ({loading}) => {
                 <Navbar.Brand>
                     <Link to="/">Home</Link>
                 </Navbar.Brand>
+                <Navbar.Toggle />
             </Navbar.Header>
-            <Nav>
+            <Navbar.Collapse>
                 <NavDropdown eventKey={1} title="Authors" id="authors-dropdown">
                     <LinkContainer to="/author">
                         <MenuItem eventKey={1.1}>Add Author</MenuItem>
@@ -44,7 +45,7 @@ const Header = ({loading}) => {
                 <LinkContainer to="/about">
                     <NavItem eventKey={4}>About</NavItem>
                 </LinkContainer>
-            </Nav>
+            </Navbar.Collapse>
         </Navbar>
     );
 };

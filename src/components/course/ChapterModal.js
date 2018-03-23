@@ -7,7 +7,7 @@ const ChapterModal = ({chapter, show, handleClose, handleSave, onChange, errors}
         <div className="static-modal">
             <Modal show={show}>
                 <Modal.Header>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Chapter</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
