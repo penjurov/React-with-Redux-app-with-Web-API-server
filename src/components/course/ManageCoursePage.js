@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import * as authorActions from '../../actions/authorActions';
+import * as categoryActions from '../../actions/categoryActions';
 import CourseForm from './CourseForm';
 import ChapterModal  from './ChapterModal';
 import toastr from 'toastr';
@@ -31,6 +33,9 @@ export class ManageCoursePage extends React.Component {
     }
 
     componentWillMount() {
+        this.props.authorActions.loadAuthors();
+        this.props.categoryActions.loadCategories();
+
         if(this.props.courseId) {
             this.props.actions.getCourse(this.props.courseId).then(course => {
                 this.setState({course: course});
@@ -100,8 +105,7 @@ export class ManageCoursePage extends React.Component {
 
     handleModalClose() {
         this.setState({
-            shouldShowChapterModal: false,
-          
+            shouldShowChapterModal: false
         });
     }
 
@@ -162,7 +166,9 @@ ManageCoursePage.propTypes = {
     chapter: PropTypes.object.isRequired,
     authors: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    authorActions: PropTypes.object.isRequired,
+    categoryActions: PropTypes.object.isRequired
 };
 
 ManageCoursePage.contextTypes = {
@@ -198,7 +204,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(courseActions, dispatch)
+        actions: bindActionCreators(courseActions, dispatch),
+        authorActions: bindActionCreators(authorActions, dispatch),
+        categoryActions: bindActionCreators(categoryActions, dispatch)
     };
 }
 

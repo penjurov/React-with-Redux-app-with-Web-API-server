@@ -13,11 +13,14 @@ describe ('Manage Course Page', () => {
                 AuthorId: "",
                 Length: "",
                 CategoryId: "",
-                Chapters: []
+                Chapters: [],
+                chapter: {}
               },
               authors: [],
               categories: [],
-              actions: {saveCourse: () => {return Promise.resolve(); }}
+              actions: {saveCourse: () => {return Promise.resolve(); }},
+              authorActions: {loadAuthors: () => {return Promise.resolve(); }},
+              categoryActions: {loadCategories: () => {return Promise.resolve(); }}
         };
         const wrapper = mount(<ManageCoursePage {...props}/>);
         const saveButton = wrapper.find('input').last();

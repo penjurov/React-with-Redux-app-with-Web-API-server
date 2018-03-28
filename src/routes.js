@@ -14,6 +14,8 @@ import ManageAuthorPage from './components/author/ManageAuthorPage'; //eslint-di
 import CategoriesPage from './components/category/CategoriesPage';
 import ManageCategoryPage from './components/category/ManageCategoryPage'; //eslint-disable-line import/no-named-as-default
 
+import StatisticsPage from './components/statistics/StatisticsPage'; //eslint-disable-line import/no-named-as-default
+
 export default (
     <Switch>
         <App>
@@ -30,6 +32,8 @@ export default (
             <Route path="/categories" component={CategoriesPage} />
             <Route exact path="/category" component={ManageCategoryPage} />
             <Route path="/category/:id" component={ManageCategoryPage} />
+
+            <Route path="/statistics" component={StatisticsPage} />
         </App>
     </Switch>  
 );
